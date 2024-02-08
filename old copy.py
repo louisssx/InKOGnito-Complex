@@ -355,6 +355,7 @@ def start_button_event():
     )
 
     # FRAME, LOGOUT, INTRO LABEL ------------------------------------------------------------------------------------------------------------------------------------
+    background_image
     frame = ctk.CTkFrame(
         master = main_frame,
         height = 150,

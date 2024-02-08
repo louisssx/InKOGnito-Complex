@@ -10,10 +10,18 @@ import csv
 Landing_page = ctk.CTk()
 Landing_page.title("inKOGnito")
 Landing_page.geometry("1366x768")
-Landing_page.iconbitmap("Banners\logo.ico")
+Landing_page.iconbitmap("backgrounds\logo.ico")
 ctk.set_appearance_mode('dark')
 
+# my_background = ctk.CTkImage(light_image=Image.open('backgrounds\light.png'),
+# dark_image=Image.open('backgrounds/dark.png'), size = (1920,1080))
 
+# my_background = ctk.CTkLabel(Landing_page, text='', image= my_background)
+# my_background.pack(
+#     fill = "both", 
+#     expand = True, 
+#     anchor = "center"
+# )
 def go_back():
     main_frame.pack_forget()
     main_login_frame.pack(
@@ -32,71 +40,82 @@ def go_back_login():
 
 def login_page():
     global user_Entry, pass_Entry
+    log_text = ctk.CTkFrame(
+        master = login_Frame,
+        fg_color = 'transparent',
+        width = 450,
+        height = 700
+    )
+    log_text.place(
+        relx = 0.5, 
+        rely = 0.5, 
+        anchor = tkinter.CENTER
+    )
     log_Acc = ctk.CTkLabel(
-        master = login_Frame, 
+        master = log_text, 
         text = "Login to your Account", 
         font = ("Segoe UI", 20, "bold")
     )
     log_Acc.place(
-        x = 145, 
-        y = 100
+        x = 120, #from 145
+        y = 200 
     )
 
     app_Welcome = ctk.CTkLabel(
-        master = login_Frame, 
+        master = log_text, 
         text = "Welcome to inKOGnito!", 
         font = ("Arial", 25, "bold")
     )
     app_Welcome.place(
-        x = 112, 
-        y = 45
+        x = 87, 
+        y = 145
     )
 
     enter_User = ctk.CTkLabel(
-        master = login_Frame, 
+        master = log_text, 
         text = "Username", 
         font = ("Arial", 15)
     )
     enter_User.place(
-        x = 133, 
-        y = 155
+        x = 108, 
+        y = 255
     )
 
     user_Entry = ctk.CTkEntry(
-        login_Frame, 
+        log_text, 
         height = 40,
         width = 250, 
         placeholder_text = "Enter your Username"
     )
     user_Entry.place(
-        x = 120, 
-        y = 185
+        x = 95, 
+        y = 285
     )
 
     enter_Pass = ctk.CTkLabel(
-        master = login_Frame, 
+        master = log_text, 
         text = "Password", 
         font = ("Arial", 15)
     )
     enter_Pass.place(
-        x = 133, 
-        y = 240
+        x = 108, 
+        y = 340
     )
 
     pass_Entry = ctk.CTkEntry(
-        login_Frame, 
+        log_text, 
         height = 40, 
         width = 250, 
         placeholder_text = "Enter your Password", 
         show = "*"
     )
     pass_Entry.place(
-        x = 120, 
-        y = 270
+        x = 95, 
+        y = 370
     )
 
     login_Button = ctk.CTkButton(
-        login_Frame,
+        log_text,
         fg_color = ("#F875AA", "#8758FF"),
         text_color = "#000000",
         height = 35,
@@ -107,22 +126,22 @@ def login_page():
         command = authentication,
     )
     login_Button.place(
-        x = 195, 
-        y = 340
+        x = 170, 
+        y = 440
     )
 
     no_Acc = ctk.CTkLabel(
-        login_Frame, 
+        log_text, 
         text = "No Account?", 
         font = ("Helvetica", 12)
     )
     no_Acc.place(
-        x = 150, 
-        y = 400
+        x = 125, 
+        y = 500
     )
 
     registeracc_button = ctk.CTkButton(
-        login_Frame,
+        log_text,
         fg_color = "transparent",
         text_color = ("#F875AA", "#8758FF"),
         height = 35,
@@ -133,8 +152,8 @@ def login_page():
         command = register_Acc,
     )
     registeracc_button.place(
-        x = 225, 
-        y = 397.5)
+        x = 200, 
+        y = 497.5)
 
     def mode_event():
         if switch_var.get() == "on":
@@ -144,7 +163,7 @@ def login_page():
 
     switch_var = ctk.StringVar(value="on")
     mode_switch = ctk.CTkSwitch(
-        master = Landing_page,
+        master = log_text,
         text = "Dark Mode",
         button_hover_color = ("#F875AA", "#8758FF"),
         progress_color = ("#AEDEFC", "#191919"),
@@ -166,83 +185,79 @@ def register_Acc():
         expand = True, 
         anchor = "center"
     )
-
-    register_Frame = ctk.CTkFrame(
-        master = main_register_frame,
-        height = 500,
-        width = 500,
-        corner_radius = 50,
-        fg_color = ("#FFF6F6", "#191919"),
-        border_width = 10,
-        border_color = ("#F875AA", "#8758FF"),
+    reg_text = ctk.CTkFrame(
+        master = register_Frame,
+        fg_color = 'transparent',
+        width = 450,
+        height = 700
     )
-    register_Frame.place(
+    reg_text.place(
         relx = 0.5, 
         rely = 0.5, 
         anchor = tkinter.CENTER
     )
 
     app_Welcome = ctk.CTkLabel(
-        master = register_Frame, 
+        master = reg_text, 
         text = "Welcome to inKOGnito!", 
         font = ("Arial", 25, "bold")
     )
     app_Welcome.place(
-        x = 112, 
-        y = 45
+        x = 87, 
+        y = 145
     )
 
     create_Acc = ctk.CTkLabel(
-        master = register_Frame, 
+        master = reg_text, 
         text = "Create your Account", 
         font = ("Ubuntu", 20, "bold")
     )
     create_Acc.place(
-        x = 145, 
-        y = 100
+        x = 120, 
+        y = 200
     )
 
     enter_Uniqueuser = ctk.CTkLabel(
-        master = register_Frame, 
+        master = reg_text, 
         text = "Enter Unique Username", 
         font = ("Ubuntu", 15)
     )
     enter_Uniqueuser.place(
-        x = 133, 
-        y = 155
+        x = 108, 
+        y = 255
     )
 
     enter_Newuser = ctk.CTkEntry(
-        register_Frame, 
+        reg_text, 
         height = 40, 
         width = 250, 
         placeholder_text = "Create your Username"
     )
     enter_Newuser.place(
-        x = 120, 
-        y = 185
+        x = 95, 
+        y = 285
     )
 
     enter_Uniquepass = ctk.CTkLabel(
-        master = register_Frame, 
+        master = reg_text, 
         text = "Enter Password", 
         font = ("Ubuntu", 15)
     )
     enter_Uniquepass.place(
-        x = 133, 
-        y = 240
+        x = 108, 
+        y = 340
     )
 
     enter_Newpass = ctk.CTkEntry(
-        register_Frame, 
+        reg_text, 
         height = 40, 
         width = 250, 
         placeholder_text = "Create your Password", 
         show = "*"
     )
     enter_Newpass.place(
-        x = 120, 
-        y = 270
+        x = 95, 
+        y = 370
     )
 
     def write_NewUser():
@@ -280,7 +295,7 @@ def register_Acc():
             go_back_login()
 
     create_Button = ctk.CTkButton(
-        register_Frame,
+        reg_text,
         fg_color = ("#F875AA", "#8758FF"),
         hover_color = ("#AEDEFC", "#5CB8E4"),
         height = 35,
@@ -290,21 +305,21 @@ def register_Acc():
         command = write_NewUser,
     )
     create_Button.place(
-        x = 195, 
-        y = 340)
+        x = 170, 
+        y = 440)
 
     have_Acc = ctk.CTkLabel(
-        register_Frame, 
+        reg_text, 
         text = "Already have Account?", 
         font = ("Helvetica", 12)
     )
     have_Acc.place(
-        x = 150, 
-        y = 400
+        x = 125, 
+        y = 500
     )
 
     signin_Button = ctk.CTkButton(
-        register_Frame,
+        reg_text,
         fg_color = "transparent",
         text_color = ("#F875AA", "#8758FF"),
         height = 35,
@@ -315,8 +330,31 @@ def register_Acc():
         command = go_back_login,
     )
     signin_Button.place(
-        x = 280, 
-        y = 395.5
+        x = 255, 
+        y = 495.5
+    )
+
+    def mode_event():
+        if switch_var.get() == "on":
+            ctk.set_appearance_mode("dark")
+        else:
+            ctk.set_appearance_mode("light")
+
+    switch_var = ctk.StringVar(value="on")
+    mode_switch = ctk.CTkSwitch(
+        master = reg_text,
+        text = "Dark Mode",
+        button_hover_color = ("#F875AA", "#8758FF"),
+        progress_color = ("#AEDEFC", "#191919"),
+        button_color = ("#F875AA", "#8758FF"),
+        command = mode_event,
+        variable = switch_var,
+        onvalue = "on",
+        offvalue = "off",
+    )
+    mode_switch.place(
+        x = 25, 
+        y = 670
     )
 
 def read_User():
@@ -668,23 +706,75 @@ main_register_frame = ctk.CTkFrame(
 
 login_Frame = ctk.CTkFrame(
     master = main_login_frame,
-    height = 500,
+    height = 1080,
     width = 500,
-    corner_radius = 50,
     fg_color = ("#FFF6F6", "#191919"),
     border_width = 10,
-    border_color = ("#F875AA", "#8758FF"),
+    border_color = ("#F875AA", "#8758FF"),)
+login_Frame.pack(
+   side = 'right'
 )
-login_Frame.place(
-    relx = 0.5, 
-    rely = 0.5, 
-    anchor = tkinter.CENTER
+register_Frame = ctk.CTkFrame(
+        master = main_register_frame,
+        height = 1080,
+        width = 500,
+        fg_color = ("#FFF6F6", "#191919"),
+        border_width = 10,
+        border_color = ("#F875AA", "#8758FF"),
+    )
+register_Frame.pack(
+    side = 'right'
 )
+
 
 main_frame = ctk.CTkFrame(
     Landing_page, 
     fg_color = "transparent"
 )
+
+background_frame = ctk.CTkFrame(
+    master = main_login_frame,
+    fg_color = "black",
+    corner_radius = 50,
+    height = 1080,
+    width = 700)
+background_frame.pack(side = 'left')
+
+my_background = ctk.CTkImage(light_image=Image.open('backgrounds\light.png'),
+dark_image=Image.open('backgrounds/dark.png'), size = (1920,1080))
+
+my_background = ctk.CTkLabel(
+    master = background_frame, 
+    text='', 
+    image= my_background)
+my_background.pack(
+    fill = "both", 
+    expand = True, 
+    anchor = "center"
+)
+
+register_background = ctk.CTkFrame(
+    master = main_register_frame,
+    fg_color = "black",
+    corner_radius = 50,
+    height = 1080,
+    width = 700
+)
+register_background.pack(side = 'left')
+
+reg_background = ctk.CTkImage(light_image=Image.open('backgrounds\light.png'),
+dark_image=Image.open('backgrounds/dark.png'), size = (1920,1080))
+
+reg_bg = ctk.CTkLabel(
+    master = register_background, 
+    text='', 
+    image= reg_background)
+reg_bg.pack(
+    fill = "both", 
+    expand = True, 
+    anchor = "center"
+)
+
 
 login_page()
 Landing_page.mainloop()
